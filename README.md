@@ -1,7 +1,8 @@
-스프링 MVC 시작
-================
-
-# Spring MVC
+Branch. info
+=========
+Spring MVC 시작
+---------
+### Spring MVC
 
 * M : 모델
 * V : 뷰
