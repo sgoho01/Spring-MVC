@@ -1,10 +1,9 @@
 Branch. info
 =========
-#
-#
+  
 Spring MVC 시작
 ---------
-#  
+ 
 ### Spring MVC
 
 * M : 모델
