@@ -21,6 +21,7 @@ public class ServletTest extends HttpServlet {
         resp.getWriter().println("</head>");
         resp.getWriter().println("<body>");
         resp.getWriter().println("<h1>Servlet</h1>");
+        resp.getWriter().println("<h1>" + getServletContext().getAttribute("name") + "</h1>");
         resp.getWriter().println("</body>");
         resp.getWriter().println("</html>");
     }

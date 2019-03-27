@@ -43,14 +43,76 @@
 ### 메이븐 프로젝트
 - 메이븐 프로젝트로 프로젝트 생성 시에는 web.xml에 서블릿을 정의하고 연결해서 해당 서블릿을 호출하여 사용한다
     <pre><code>
-    < servlet>
-        < servlet-name>test< /servlet-name>
-        < servlet-class>com.ghsong.springmvc.ServletTest< /servlet-class>
-    < /servlet>
-    
-    < servlet>
-        < servlet-name>hello< /servlet-name>
-        < url-pattern>/hello< /url-pattern>
-    < /servlet>
+    < web-app>
+        < servlet>
+            < servlet-name>test< /servlet-name>
+            < servlet-class>com.ghsong.springmvc.ServletTest< /servlet-class>
+        < /servlet>
+        
+        < servlet>
+            < servlet-name>hello< /servlet-name>
+            < url-pattern>/hello< /url-pattern>
+        < /servlet>
+    < /web-app>
     </code></pre>
 
+    - localhost:port/hello 로 접속하여 화면 테스트
+
+     
+### 서블릿 리스너 & 서블릿 필터
+
+#### 서블릿 리스너
+- 웹 애플리케이션에서 발생하는 주요 이벤트를 감지하고 각 이벤트에 특별한 작업이 필요한 경우에 사용할 수 있다.
+    - 서블릿 컨텍스트 수준의 이벤트
+        - 컨텍스트 라이프사이클 이벤트
+        - 컨텍스트 에트리뷰트 변경 이벤트
+    - 세션 수준의 이벤트
+        - 세션 라이프사이클 이벤트
+        - 세션 에트리뷰트 변경 이벤트
+        
+- web.xml에서 리스너 등록
+<pre><code>
+web.xml)
+    < web-app>
+        < listener>
+            < listener-class>com.ghsong.springmvc.MyListener< /listener-class>
+        < /listener>
+        
+        ...
+    < /web-app>
+</code></pre>
+        
+- 서블릿에서 리스너 사용
+    - 서블릿 클래스에서 사용 : getServletContext().getAttribute("name")
+        
+#### 서블릿 필터
+- 들어온 요청을 서블릿으로 보내고, 또 서블릿이 작성한 응답을 클라이언트로 보내기 전에 특별한 처리가 필요한 경우에 사용할 수 있다.
+- 체인 형태의 구조
+    
+    Servlet Container  
+(request)▽    △(response)  
+        Filter A  
+(request)▽    △(response)  
+        Filter B         
+(request)▽    △(response)  
+        Servlet  
+        
+- web.xml에서 필터 등록
+<pre><code>
+web.xml)
+    < web-app>
+        < filter>
+            < filter-name>myFilter< /filter-name>
+            < filter-class>com.ghsong.springmvc.MyFilter< /filter-class>
+        < /filter>
+        
+        < filter-mapping>
+            < filter-name>myFilter< /filter-name>
+            < servlet-name>hello< /servlet-name>
+                or
+            < url-pattern>< /url-pattern>
+        < /filter-mapping>
+        
+        ...
+    < /web-app>
+</code></pre>
