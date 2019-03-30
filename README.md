@@ -121,7 +121,7 @@ web.xml)
 
 ## 3. DispatcherServlet
 
-### DispatcherServlet
+### 3.1 DispatcherServlet Info
 
 - 스프링 MVC의 핵심
 - Front Controller의 역할
@@ -171,4 +171,10 @@ web.xml)
     - 해당 Context에서 생성해주는게 다르므로 init-param으로 등록한 Config 파일에서 ComponentScan의 필터를 적용한다.  
     (RootConext를 따로 생성하지 않고 DispatcherServlet에서 전부 등록해도 상관없다)  
     
-    
+### 3.2 DispatcherServlet 초기화  
+
+- 다음의 특별한 타입의 빈들을 찾거나, 기본 전력에 해당하는 빈들을 등록한다.
+- HandlerMapping : 핸들러를 찾아주는 인터페이스
+- HandlerAdapter : 핸들러를 실행하는 인터페이스
+- HandlerExceptionResolver
+- View Resolver
