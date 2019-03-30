@@ -189,5 +189,3 @@ web.xml)
     - Suffix
     
     -> WebConfig에 ViewResolver의 Prefix, Suffix를 설정.
-    
-    
