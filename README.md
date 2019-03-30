@@ -178,3 +178,14 @@ web.xml)
 - HandlerAdapter : 핸들러를 실행하는 인터페이스
 - HandlerExceptionResolver
 - View Resolver
+
+### 3.3 DispatcherServlet 동작 원리
+
+- ViewResolver
+    - InternalResourceViewResolver
+    
+- InternalResourceViewResolver
+    - Prefix 
+    - Suffix
+    
+    -> WebConfig에 ViewResolver의 Prefix, Suffix를 설정.
