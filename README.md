@@ -31,3 +31,10 @@
         - preHandler 1, preHandler 2 -> postHandler 2, postHandler 1 -> afterHandler 2, afterHandler 1
     - 비동기적인 요청 처리 시에는 호출되지 않는다.
     
+    
+## Interceptor 생성 및 등록
+- HandlerInterceptor를 구현한 Interceptor 생성(GreetingInterceptor, AnotherInterceptor)
+- WebConfig에서 Interceptor 등록
+    - Interceptor의 실행 순서를 지정하고 싶은 경우 order를 지정하여 사용
+        - order의 순서는 숫자가 작을수록 빨리 실행된다.
+    - 특정 URL에만 Interceptor를 적용하고 싶은 경우 addPathPatterns를 사용하여 패턴을 추가한다.
