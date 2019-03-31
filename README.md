@@ -31,4 +31,22 @@
     
 - Test시 데이터를 보낼 때 contentType을 json타입으로 보내어 테스트..
 
- 
+## HTTP 메시지 컨버터 : XML
+- 의존성 추가
+```
+<dependency>
+   <groupId>javax.xml.bind</groupId>
+   <artifactId>jaxb-api</artifactId>
+</dependency>
+<dependency>
+   <groupId>org.glassfish.jaxb</groupId>
+   <artifactId>jaxb-runtime</artifactId>
+</dependency>
+<dependency>
+   <groupId>org.springframework</groupId>
+   <artifactId>spring-oxm</artifactId>
+   <version>${spring-framework.version}</version>
+</dependency>
+```
+- WebConfig에 Bean 등록
+- 변환할 객체에 @XmlRootElement 애노테이션 등록
