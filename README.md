@@ -1,7 +1,11 @@
-# Spring-MVC
+# WebMVCConfigurer
 
-## Branch List
-01. info : Spring-MVC 시작. Spinrg-MVC에 대한 간단한 설명
-02. Servlet : Spring Servlet 소개, 서블릿 리스너, 필터에 대한 설명
-03. Spring Boot MVC : Spring Boot에서 스프링 MVC의 자동설정
-04. Spring Boot JSP : Spring Boot에서 JSP 사용
+## Formatter
+- Printer : 해당 객체를 (Locale 정보를 참고하여) 문자열로 어떻게 출력할 것인가
+- Parser : 해당 문자열을 (Locale 정보를 참고하여) 객체로 어떻게 변환할 것인가
+
+1. Formatter를 구현하는 객체 Formatter를 생성 (PersonFormatter)
+2. WebConfig에 해당 formatter 등록(WebConfig)
+
+### Spring Boot 사용하는 경우
+- Spring Boot를 사용하는 경우에는 WebConfig에 Formatter를 따로 등록해 주지 않고 생성한 Formatter파일을 Bean으로만 등록해주면 사용이 가능하다.
