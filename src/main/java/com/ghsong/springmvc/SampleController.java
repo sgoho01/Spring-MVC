@@ -1,9 +1,6 @@
 package com.ghsong.springmvc;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class SampleController {
@@ -28,6 +25,14 @@ public class SampleController {
     @GetMapping("/hello2")
     public String hello2(@RequestParam("name") String name) {
         return "hello " + name;
+    }
+
+
+    @GetMapping("/message")
+    @ResponseBody
+    public String message(@RequestBody String body) {
+
+        return body;
     }
 
 

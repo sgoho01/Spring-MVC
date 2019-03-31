@@ -1,29 +1,18 @@
-# 07.ResourceHandler
+# 08.HTTP Message Converter
 
-## 리소스 핸들러
-- 이미지, 자바스크립트, CSS, HTML 파일과 같은 정적인 리소스를 처리하는 핸들러
+## HTTP 메시지 컨버터
+- 요청 본문에서 메시지를 읽어들이거나 (@RequestBody), 응답 본문에 메시지를 작성할 때(@ResponseBody) 사용한다.
 
-### 디폴트(Default) 서블릿
-- 서블릿 컨테이너가 기본으로 제공하는 서블릿으로 정적인 리소스를 처리할 때 사용
+## 기본 HTTP 메시지 컨버터
+- 바이트 컨버터
+- 문자열 컨버터
+- Resource 컨버터
+- Form 컨버터(폼 데이터 to/form MultiValueMap<String, String>)
+- ...
 
-### 스프링 MVC 리소스 핸들러 맵핑 등록
-- 가장 낮은 우선 순위로 등록
-    - 다른 핸들러 맵핑이 "/" 이하 요청을 처리하도록 허용하고 
-    - 최종적으로 리소스 핸들러가 처리하도록
-    
-### 리소스 핸들러 설정
-- 어떤 요청 패턴을 지원할 것인가
-- 어디서 리소스를 찾을 것인가
-- 캐싱
-- ResourceResolver : 요청에 해당하는 리소스를 찾는 전략
-    - 캐싱, 인코딩(gzip, brotli), WebJar, ...
-- ResourceTransformer : 응답으로 보낼 리소스를 수정하는 전략
-    - 캐싱, CSS 링크, HTML5, AppCache, ...
-    
-
-### 스프링 부트 사용시
-- 스프링 부트를 사용중이면 기본 정적 리소스 핸들러와 캐싱을 제공해줌(resources의 static 폴더)
-
-
-## 리소스 핸들러 등록
-- WebConfig에서 resourceHandler 등록
+## 설정 방법
+- 기본으로 등록해주는 컨버터에 새로운 컨버터 추가하기 : extendMessageConverters
+- 기본으로 등록해주는 컨버터는 다 무시하고 새로 컨버터 설정하기 : configureMessageConverters
+- 의존성 추가로 컨버터 등록하기
+    - 메이븐 또는 그래들 설정에 의존성을 추가하면 그에 따른 컨버터가 자동으로 등록 된다.
+    - WebMvcConfigurationSuppo
