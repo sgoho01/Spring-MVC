@@ -26,7 +26,7 @@ public class SampleController {
     }
 
     @GetMapping("/hello2")
-    public String hello2(@RequestParam String name) {
+    public String hello2(@RequestParam("name") String name) {
         return "hello " + name;
     }
 
