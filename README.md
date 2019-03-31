@@ -1,18 +1,18 @@
-# 1. info
+# 3. SpringBootMVC
   
-## Spring MVC 시작
+## 스프링부트의 스프링 MVC
  
-### Spring MVC
+### 스프링부트
+- 스프링 애플리케이션 안에 스프링 IoC 컨테이너, 임베디드 톰캣(was)를 생성.
+- 스프링 애플리케이션 안에 생성된 톰캣에 DispatcherServlet을 등록한다.
 
-* M : 모델
-* V : 뷰
-* C : 컨트롤러
+#### 스프링부트의 주관이 적용된 자동 설정이 적용된다.
+- JSP보다 Thymeleaf 선호
+- JSON 지원
+- 정적 리소스 지원(+웰컴 페이지, 파비콘 등 지원)
 
-#
+#### 스프링 MVC 커스터마이징
+- application.properties
+- @Configuration + implements WebMvcConfigurer : 스프링 부트의 스프링 MVC 자동설정
+- @Configuration + @EnableWebMvc + implements WebMvcConfigurer : 스프링 부트의 스프링 MVC 자동설정을 이용하지 않음
 
-모델 : 평범한 자바 POJO  
-뷰 : HTML, JSP, 타임리프 ..  
-컨트롤러 : 사용자의 입력을 받아 모델 객체의 데이터를 변경하거나, 모델 객체를 뷰에 전달하는 역할  
-  - 입력값 검증
-  - 입력 받은 데이터로 모델 객체 변경
-  - 변경된 모델 객체를 뷰에 전달
