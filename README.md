@@ -1,40 +1,29 @@
-# 06.HandlerInterceptor
+# 07.ResourceHandler
 
-## Interceptor
-- 핸들러 맵핑에 설정할 수 있는 인터셉터
-- 핸들러를 실행하기 전, 후(아직 랜더링 전) 그리고 완료(랜더링 끝난 이후) 시점에 부가 작업을 하고 싶은 경우 사용 할 수 있다.
-    - preHandle
-    - postHandle
-    - afterHandle
-- 여러 핸들러에서 반복적으로 사용하는 코드를 줄이고 싶을 때 사용 할 수 있다.
-    - 로깅, 인증 체크, Locale 변경 등...
-    
-### preHandle
-- boolean preHandle(request, response, handler)
-    - 핸들러 실행하기 전에 호출됨
-    - '핸들러'에 대한 정보를 사용할 수 있기 때문에 서블릿 필터에 비해 보다 세밀한 로직을 구현 할 수 있다.
-    - 리턴값으로 계속 다음 인터셉터 또는 핸들러로 요청, 응답을 전달할지(true) 응답 처리가 이곳에서 끝난는지(false)를 알려준다.
-    
-### postHandle
-- boolean postHandle(request, response, modelAndView)
-    - 핸들러 실행이 끝나고 아직 뷰를 랜더링 하기 이전에 호출됨
-    - '뷰'에 전달할 추가적이거나 여러 핸들러에 공통적인 모델 정보를 담는데 사용한다.
-    - 이 메소드는 인터셉터 역순으로 호출된다.
-        - preHandler 1, preHandler 2 -> postHandler 2, postHandler 1
-    - 비동기적인 요청 처리 시에는 호출되지 않는다.
+## 리소스 핸들러
+- 이미지, 자바스크립트, CSS, HTML 파일과 같은 정적인 리소스를 처리하는 핸들러
 
-### afterHandle
-- boolean afterHandle(request, response, handler, ex)
-    - 요청 처리가 완전히 끝난 뒤(뷰 랜러딩이 끝난 후)에 호출됨
-    - preHandler가 true를 리턴한 경우에만 실행됨
-    - 이 메소드는 인터셉터 역순으로 호출된다.
-        - preHandler 1, preHandler 2 -> postHandler 2, postHandler 1 -> afterHandler 2, afterHandler 1
-    - 비동기적인 요청 처리 시에는 호출되지 않는다.
+### 디폴트(Default) 서블릿
+- 서블릿 컨테이너가 기본으로 제공하는 서블릿으로 정적인 리소스를 처리할 때 사용
+
+### 스프링 MVC 리소스 핸들러 맵핑 등록
+- 가장 낮은 우선 순위로 등록
+    - 다른 핸들러 맵핑이 "/" 이하 요청을 처리하도록 허용하고 
+    - 최종적으로 리소스 핸들러가 처리하도록
     
+### 리소스 핸들러 설정
+- 어떤 요청 패턴을 지원할 것인가
+- 어디서 리소스를 찾을 것인가
+- 캐싱
+- ResourceResolver : 요청에 해당하는 리소스를 찾는 전략
+    - 캐싱, 인코딩(gzip, brotli), WebJar, ...
+- ResourceTransformer : 응답으로 보낼 리소스를 수정하는 전략
+    - 캐싱, CSS 링크, HTML5, AppCache, ...
     
-## Interceptor 생성 및 등록
-- HandlerInterceptor를 구현한 Interceptor 생성(GreetingInterceptor, AnotherInterceptor)
-- WebConfig에서 Interceptor 등록
-    - Interceptor의 실행 순서를 지정하고 싶은 경우 order를 지정하여 사용
-        - order의 순서는 숫자가 작을수록 빨리 실행된다.
-    - 특정 URL에만 Interceptor를 적용하고 싶은 경우 addPathPatterns를 사용하여 패턴을 추가한다.
+
+### 스프링 부트 사용시
+- 스프링 부트를 사용중이면 기본 정적 리소스 핸들러와 캐싱을 제공해줌(resources의 static 폴더)
+
+
+## 리소스 핸들러 등록
+- WebConfig에서 resourceHandler 등록
