@@ -10,3 +10,4 @@
 - 07.ResourceHandler : 정적인 리소스를 처리하는 핸들러 등록
 - 08.HTTP Message Converter : 요청에서 메시지를 읽거나 응답에 메시지를 작성할 때 사용 할 수 있는컨버터
 - 09.SpringMVC_USE : 스프링 MVC 활용
+    - HTTP 요청 맵핑
