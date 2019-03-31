@@ -1,11 +1,33 @@
-# WebMVCConfigurer
+# 06.HandlerInterceptor
 
-## Formatter
-- Printer : 해당 객체를 (Locale 정보를 참고하여) 문자열로 어떻게 출력할 것인가
-- Parser : 해당 문자열을 (Locale 정보를 참고하여) 객체로 어떻게 변환할 것인가
+## Interceptor
+- 핸들러 맵핑에 설정할 수 있는 인터셉터
+- 핸들러를 실행하기 전, 후(아직 랜더링 전) 그리고 완료(랜더링 끝난 이후) 시점에 부가 작업을 하고 싶은 경우 사용 할 수 있다.
+    - preHandle
+    - postHandle
+    - afterHandle
+- 여러 핸들러에서 반복적으로 사용하는 코드를 줄이고 싶을 때 사용 할 수 있다.
+    - 로깅, 인증 체크, Locale 변경 등...
+    
+### preHandle
+- boolean preHandle(request, response, handler)
+    - 핸들러 실행하기 전에 호출됨
+    - '핸들러'에 대한 정보를 사용할 수 있기 때문에 서블릿 필터에 비해 보다 세밀한 로직을 구현 할 수 있다.
+    - 리턴값으로 계속 다음 인터셉터 또는 핸들러로 요청, 응답을 전달할지(true) 응답 처리가 이곳에서 끝난는지(false)를 알려준다.
+    
+### postHandle
+- boolean postHandle(request, response, modelAndView)
+    - 핸들러 실행이 끝나고 아직 뷰를 랜더링 하기 이전에 호출됨
+    - '뷰'에 전달할 추가적이거나 여러 핸들러에 공통적인 모델 정보를 담는데 사용한다.
+    - 이 메소드는 인터셉터 역순으로 호출된다.
+        - preHandler 1, preHandler 2 -> postHandler 2, postHandler 1
+    - 비동기적인 요청 처리 시에는 호출되지 않는다.
 
-1. Formatter를 구현하는 객체 Formatter를 생성 (PersonFormatter)
-2. WebConfig에 해당 formatter 등록(WebConfig)
-
-### Spring Boot 사용하는 경우
-- Spring Boot를 사용하는 경우에는 WebConfig에 Formatter를 따로 등록해 주지 않고 생성한 Formatter파일을 Bean으로만 등록해주면 사용이 가능하다.
+### afterHandle
+- boolean afterHandle(request, response, handler, ex)
+    - 요청 처리가 완전히 끝난 뒤(뷰 랜러딩이 끝난 후)에 호출됨
+    - preHandler가 true를 리턴한 경우에만 실행됨
+    - 이 메소드는 인터셉터 역순으로 호출된다.
+        - preHandler 1, preHandler 2 -> postHandler 2, postHandler 1 -> afterHandler 2, afterHandler 1
+    - 비동기적인 요청 처리 시에는 호출되지 않는다.
+    
