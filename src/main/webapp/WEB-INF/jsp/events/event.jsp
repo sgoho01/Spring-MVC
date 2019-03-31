@@ -14,8 +14,8 @@
         </tr>
         <c:forEach items="${events}" var="event">
             <tr>
-                <td>event.name</td>
-                <td>event.startDateTime</td>
+                <td>${event.name}</td>
+                <td>${event.startDateTime}</td>
             </tr>
         </c:forEach>
     </table>

@@ -5,7 +5,7 @@
     - war 프로젝트로 생성시에는 기본 Application 클래스 외에 ServletInitalizer 클래스도 같이 생성됨
     - 이 파일은 war를 was에 배포해서 사용가능하도록 도와주는 클래스
 2. JSP를 사용하기 위한 의존성 추가 (pom.xml)
-```aidl
+```
 <dependency>
    <groupId>javax.servlet</groupId>
    <artifactId>jstl</artifactId>
@@ -18,3 +18,8 @@
 ```
 3. webapp-WEB-INF-jsp 디렉토리 생성하여 jsp파일 생성
 4. application.properties 에서 prefix, suffix 설정 후 사용
+
+## WAR 배포방법
+- 기본으로 있는 maven 실행명령어를 사용해서 패키징 (mvnw.cmd 파일 사용)
+    - (./mvnw package)
+- tomcat에 해당 war를 올려서 tomcat(was) 안에 Servlet 등록되어 사용
