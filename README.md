@@ -15,6 +15,9 @@
 - 스프링 프레임워크 웹 MVC
 - 타임리프
 
+### 1.HTTP 요청 맵핑 : 요청 메소드
+### 2.HTTP 요청 맵핑 : URI 패턴 맵핑
+### 3.HTTP 요청 맵핑 : 컨텐츠 타입 맵핑
 
 ### 1.HTTP 요청 맵핑 : 요청 메소드
 #### HTTP Method
@@ -71,3 +74,19 @@
     - 이 기능은 권장하지 않음.(스프링 부트에서는 기본으로 이 기능을 사용하지 않도록 설정 해 줌)
         - 보안 이슈(RFD Attack)
         - URI 변수, Path 매개변수, URI 인코딩을 사용할 때 불명확 함
+        
+### 3.HTTP 요청 맵핑 : 컨텐츠 타입 맵핑
+- 특정한 타입의 데이터를 담고 있는 요청만 처리하는 핸들러
+    - @RequestMappint(consumes=MediaType.APPLICATION_JSON_UTF8_VALUE)
+    - Content-Type 헤더로 필터링
+    - 매치 되지 않는 경우에 415 Not Supported MediaType
+    
+- 특정한 타입의 응답을 만드는 핸들러
+    - @RequestMapping(produces="application/json")
+    - Accept 헤더로 필터링
+    - 매치 되지 않는 경우에 406 Not Supported 응답
+    
+- 문자열을 입력하는 대신 MediaType을 사용하면 상수를 자동 완성으로 사용할 수 있다.
+
+- 클래스에 선언한 @RequestMapping에 사용한 것과 조합이 되지 않고 메소드에 사용한 @RequestMapping의 설정으로 덮어쓴다.
+
