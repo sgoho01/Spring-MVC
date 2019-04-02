@@ -4,6 +4,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
@@ -59,5 +60,22 @@ public class SampleControllerTest {
                 ;
     }
 
+    @Test
+    public void chap4Test() throws Exception {
+        this.mockMvc.perform(get("/chap4")
+//                    .header((HttpHeaders.FROM), "localhost"))
+                    .header((HttpHeaders.AUTHORIZATION), "111"))
+                .andDo(print())
+                .andExpect(status().isOk())
+        ;
+    }
 
+
+    @Test
+    public void hello6Test() throws Exception {
+        this.mockMvc.perform(get("/hello6"))
+                .andDo(print())
+                .andExpect(status().isOk())
+            ;
+    }
 }

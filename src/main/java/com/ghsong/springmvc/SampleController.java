@@ -1,5 +1,6 @@
 package com.ghsong.springmvc;
 
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -44,6 +45,31 @@ public class SampleController {
     @ResponseBody
     public String wellcome() {
         return "wellcome";
+    }
+
+
+    /*
+     * ### 4.HTTP 요청 맵핑 : 헤더와 파라미터 맵핑
+     */
+    @RequestMapping(value = "/chap4")
+    // 이 요청에는 헤더에 FROM이 무조건 있어야 한다.
+    //@RequestMapping(value = "/chap4", headers = HttpHeaders.FROM
+    // 이 요청에는 헤더에 FROM이 없어야 한다.
+    //@RequestMapping(value = "/chap4", headers = "!" + HttpHeaders.FROM)
+    // 이 요청에는 헤더의 AUTHORIZATION값은 111이어야 한다.
+    //@RequestMapping(value = "/chap4", headers = HttpHeaders.AUTHORIZATION + "=" + "111")
+    // 이 요청에는 name이랑 파라미터가 무조건 있어야 한다.(params = "name=spring" -> name은 무조건 spring이여야 한다)
+//    @RequestMapping(value = "/chap4", params = "name")
+    @ResponseBody
+    public String chap4() {
+        return "chap4";
+    }
+
+
+    @GetHelloMapping
+    @ResponseBody
+    public String hello6() {
+        return "hello6";
     }
 
 }
