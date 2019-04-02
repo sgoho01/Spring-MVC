@@ -140,3 +140,14 @@
 - @Documented
     - 해당 애노테이션을 사용한 코드의 문서에 그 애노테이션에 대한 정보를 표기할지 결정
     
+### 7.HTTP 요청 맵핑 : 연습문제
+1. GET/evnets  
+2. GET/events/1  
+    GET/events/2  
+    GET/events/3
+3. POST/events CONTENT-TYPE:application/json ACCEPT:application/json
+4. DELETE/events/1  
+    DELETE/events/2  
+    DELETE/events/3
+5. PUT/events/1 CONTENT-TYPE:application/json ACCEPT:application/json  
+    PUT/events/2 CONTENT-TYPE:application/json ACCEPT:application/json
